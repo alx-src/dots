@@ -16,6 +16,8 @@ return {
 
     config = function()
       local capabilities = vim.lsp.protocol.make_client_capabilities()
+      --capabilities = require("blink").default_capabilities(capabilities)
+
 
       -- lua_ls
       vim.lsp.config("lua_ls", {
@@ -32,13 +34,16 @@ return {
       })
       vim.lsp.enable("lua_ls")
 
-      -- pylsp
+      --[[ pylsp
       vim.lsp.config("pylsp", {
         settings = {
           pylsp = {
             plugins = {
               pycodestyle = {
-                ignore = {},
+                ignore = {
+                  "E302",
+                  "W291",
+                },
                 maxLineLength = 100
               }
             }
@@ -46,6 +51,7 @@ return {
         }
       })
       vim.lsp.enable("pylsp")
+      --]]
 
       -- bashls
       vim.lsp.enable('bashls')
