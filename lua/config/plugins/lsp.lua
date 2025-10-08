@@ -1,0 +1,79 @@
+return {
+  {
+    "neovim/nvim-lspconfig",
+    dependencies = {
+      "saghen/blink.cmp",
+      {
+        "folke/lazydev.nvim",
+        ft = "lua",
+        opts = {
+          library = {
+            { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+          },
+        },
+      },
+    },
+
+    config = function()
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+      -- lua_ls
+      vim.lsp.config("lua_ls", {
+        capabilities = capabilities,
+        settings = {
+          Lua = {
+            runtime = { version = "LuaJIT" },
+            diagnostics = { globals = { "vim", } },
+            workspace = { checkThirdParty = false },
+            telemetry = { enable = false },
+            format = { enable = true },
+          },
+        },
+      })
+      vim.lsp.enable("lua_ls")
+
+      -- pylsp
+      vim.lsp.config("pylsp", {
+        settings = {
+          pylsp = {
+            plugins = {
+              pycodestyle = {
+                ignore = {},
+                maxLineLength = 100
+              }
+            }
+          }
+        }
+      })
+      vim.lsp.enable("pylsp")
+
+      -- bashls
+      vim.lsp.enable('bashls')
+
+      -- clangd
+      vim.lsp.enable('clangd')
+
+      -- TODO:
+      -- rust_analyser
+
+      vim.api.nvim_create_autocmd('LspAttach', {
+        callback = function(args)
+          local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+          if not client:supports_method('textDocument/willSaveWaitUntil')
+              and client:supports_method('textDocument/formatting') then
+            vim.api.nvim_create_autocmd('BufWritePre', {
+              group = vim.api.nvim_create_augroup('my.lsp', { clear = false }),
+              buffer = args.buf,
+              callback = function()
+                vim.lsp.buf.format({ bufnr = args.buf, id = client.id, timeout_ms = 1000 })
+              end,
+            })
+          end
+        end,
+      })
+    end,
+
+    -- basedpyright
+    vim.lsp.enable('basedpyright')
+  },
+}
