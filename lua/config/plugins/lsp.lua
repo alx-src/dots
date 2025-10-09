@@ -57,6 +57,13 @@ return {
       vim.lsp.enable('bashls')
 
       -- clangd
+      vim.lsp.config( "clangd", {
+        capabilities = capabilities,
+        cmd = {
+          "clangd", 
+          "--fallback-style=webkit",
+        },
+      })
       vim.lsp.enable('clangd')
 
       -- TODO:
