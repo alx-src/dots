@@ -34,37 +34,39 @@ return {
       })
       vim.lsp.enable("lua_ls")
 
-      --[[ pylsp
-      vim.lsp.config("pylsp", {
-        settings = {
-          pylsp = {
-            plugins = {
-              pycodestyle = {
-                ignore = {
-                  "E302",
-                  "W291",
-                },
-                maxLineLength = 100
-              }
-            }
-          }
-        }
-      })
-      vim.lsp.enable("pylsp")
-      --]]
-
       -- bashls
       vim.lsp.enable('bashls')
 
       -- clangd
-      vim.lsp.config( "clangd", {
+      vim.lsp.config("clangd", {
         capabilities = capabilities,
         cmd = {
-          "clangd", 
+          "clangd",
           "--fallback-style=webkit",
         },
       })
       vim.lsp.enable('clangd')
+
+      -- basedpyright
+      vim.lsp.config('basedpyright', {
+        settings = {
+          basedpyright = {
+            analysis = {
+              typeCheckingMode = "basic",
+              autoImportCompletions = true,
+              useLibrarycCodeForTypes = true,
+              diagnosticSeverityOverrides = {
+                reportUnknownParameterType = "none",
+                reportUnknownArgumentType = "none",
+                reportUnknownVariableType = "none",
+                reportUnknownMemberType = "none",
+                reportMissingTypeStubs = "none",
+              }
+            },
+          },
+        },
+      })
+      vim.lsp.enable('basedpyright')
 
       -- TODO:
       -- rust_analyser
@@ -86,7 +88,5 @@ return {
       })
     end,
 
-    -- basedpyright
-    vim.lsp.enable('basedpyright')
   },
 }
