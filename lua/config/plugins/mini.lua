@@ -7,7 +7,7 @@ return {
       require('mini.tabline').setup()
       require('mini.pairs').setup()
       require('mini.starter').setup()
-      require('mini.notify').setup()
-    end
-  }
+      --require('mini.notify').setup()
+    end,
+  },
 }
