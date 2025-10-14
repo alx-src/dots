@@ -68,6 +68,9 @@ return {
       })
       vim.lsp.enable('basedpyright')
 
+      -- jdtls
+      vim.lsp.enable('jdtls')
+
       -- TODO:
       -- rust_analyser
 
