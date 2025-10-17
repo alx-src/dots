@@ -6,7 +6,7 @@ return {
       require('mini.statusline').setup { use_icons = true }
       require('mini.tabline').setup()
       require('mini.pairs').setup()
-      require('mini.starter').setup()
+      --require('mini.starter').setup()
       --require('mini.notify').setup()
     end,
   },

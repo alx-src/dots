@@ -13,10 +13,7 @@ return {
     },
     config = function()
       require('mason').setup()
-      local mason_lspconfig = require 'mason-lspconfig'
-      mason_lspconfig.setup {
-        ensure_installed = { 'basedpyright' },
-      }
+      require('mason-lspconfig').setup()
     end,
   },
   { 'mfussenegger/nvim-jdtls' },
@@ -63,6 +60,7 @@ return {
         cmd = {
           'clangd',
           '--fallback-style=webkit',
+          '--compile-commands-dir=build',
         },
       })
       vim.lsp.enable 'clangd'
