@@ -9,19 +9,19 @@ return {
     },
 
     config = function()
-      local builtin = require('telescope.builtin')
-      vim.keymap.set("n", "<space>ff", builtin.find_files, { desc = 'Telescope find files' })
-      vim.keymap.set("n", "<space>fb", builtin.buffers, { desc = 'Telescope open buffers' })
-      vim.keymap.set("n", "<space>fh", builtin.help_tags, { desc = 'Telescope help tags' })
-      vim.keymap.set("n", "<space>fg", builtin.live_grep, { desc = 'Telescope grep files' })
-      vim.keymap.set("n", "<space>fc", function()
+      local builtin = require 'telescope.builtin'
+      vim.keymap.set('n', '<space>ff', builtin.find_files, { desc = 'Telescope find files' })
+      vim.keymap.set('n', '<space>fb', builtin.buffers, { desc = 'Telescope open buffers' })
+      vim.keymap.set('n', '<space>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+      vim.keymap.set('n', '<space>fg', builtin.live_grep, { desc = 'Telescope grep files' })
+      vim.keymap.set('n', '<space>fc', function()
         require('telescope.builtin').find_files {
-          cwd = vim.fn.stdpath("config")
+          cwd = vim.fn.stdpath 'config',
         }
-      end, { desc = "Telescope Nvim config" })
-      vim.keymap.set("n", "<space>ep", function()
+      end, { desc = 'Telescope Nvim config' })
+      vim.keymap.set('n', '<space>ep', function()
         require('telescope.builtin').find_files {
-          cwd = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy")
+          cwd = vim.fs.joinpath(vim.fn.stdpath 'data', 'lazy'),
         }
       end)
 
@@ -29,13 +29,13 @@ return {
         defaults = {},
         pickers = {
           find_files = {
-            theme = "ivy",
+            theme = 'ivy',
           },
           help_tags = {
-            theme = "ivy",
+            theme = 'ivy',
           },
           live_grep = {
-            theme = "ivy",
+            theme = 'ivy',
           },
         },
         extensions = {
@@ -51,5 +51,5 @@ return {
 
       --require('telescope').load_extension('fzf')
     end,
-  }
+  },
 }

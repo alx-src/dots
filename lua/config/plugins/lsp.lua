@@ -49,21 +49,22 @@ return {
           },
         },
       })
-      vim.lsp.enable 'lua_ls'
-
       -- bashls
-      vim.lsp.enable 'bashls'
 
       -- clangd
       vim.lsp.config('clangd', {
         capabilities = capabilities,
+        filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'h', 'hpp' },
         cmd = {
           'clangd',
           '--fallback-style=webkit',
           '--compile-commands-dir=build',
+          '--background-index',
+          '--clang-tidy',
         },
+        root_markers = { 'CMakeLists.txt', '.clangd', '.clang-tidy', '.clang-format', 'compile_commands.json', 'compile_flags.txt', 'configure.ac', '.git' },
+        single_file_support = true,
       })
-      vim.lsp.enable 'clangd'
 
       -- basedpyright
       vim.lsp.config('basedpyright', {
@@ -84,7 +85,6 @@ return {
           },
         },
       })
-      vim.lsp.enable 'basedpyright'
 
       -- jdtls
       vim.lsp.enable 'jdtls'

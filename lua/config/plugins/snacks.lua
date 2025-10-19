@@ -8,7 +8,7 @@ return {
       indent = { enabled = true },
       quickfile = { enabled = true },
       -- dim = { enabled = false },
-      scroll = { enabled = true },
+      -- scroll = { enabled = true },
       -- gitbrowse = { enabled = false },
       -- terminal = { enabled = false },
       words = { enabled = true },
