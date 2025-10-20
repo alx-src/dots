@@ -1,21 +1,4 @@
 return {
-  {
-    'mason-org/mason.nvim',
-    dependencies = {
-      'mason-org/mason-lspconfig.nvim',
-      opts = {
-        automatic_enable = {
-          exclude = {
-            'jdtls',
-          },
-        },
-      },
-    },
-    config = function()
-      require('mason').setup()
-      require('mason-lspconfig').setup()
-    end,
-  },
   { 'mfussenegger/nvim-jdtls' },
   {
     'neovim/nvim-lspconfig',
@@ -106,6 +89,27 @@ return {
           end
         end,
       })
+    end,
+  },
+  {
+    'mason-org/mason.nvim',
+  },
+  {
+    'williamboman/mason-lspconfig.nvim', 
+    dependencies = {
+      'williamboman/mason.nvim', 
+      'neovim/nvim-lspconfig',
+    },
+    opts = {
+      automatic_enable = {
+        exclude = {
+          'jdtls',
+        },
+      },
+    },
+    config = function()
+      require('mason').setup()
+      require('mason-lspconfig').setup()
     end,
   },
 }
